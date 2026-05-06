@@ -1,6 +1,6 @@
-def exibir_slots_disponiveis():
+def exibir_slots():
     print(f'''
-        {'='*5} Aulas/Turnos Disponíveis {'='*5}
+        {'='*5} Aulas/Turnos {'='*5}
 
         Selecione um slot para alocação:
 
@@ -18,7 +18,8 @@ def exibir_slots_disponiveis():
 def verificar_slots():
     while True: 
         try:
-            slot = int(input('      ==> '))
+            exibir_slots()
+            slot = int(input('      ==> ').strip())
             if slot < 1 or slot > 10:
                 print('Valor inválido! Digite um número de 1 a 10...')
                 continue
@@ -60,32 +61,31 @@ def verificar_choque_slots(slot_novo, professor_novo, turma_novo, slot_a1, profe
         return True
     return False
 
-def slots_cadastrados(visualizar):
+def slots_cadastrados(slot):
     print(f'''
     {'='*21} Aulas já alocadas {'='*21}
-            {'Nenhum slot cadastrado' if not visualizar else visualizar}
+        {'Nenhum slot cadastrado' if not slot else slot}
     {'='*61}
             ''')
 
 def cadastrar_aula():
 
-    professor_a1 = 'Prof. Victor'
-    turma_a1 = ' Tec. Administração'
-    slot_a1 = 1
-    professor_a2 = 'Prof. Júlia'
-    turma_a2 = 'Direito'
-    slot_a2 = 4
-    visualizar = ''
+    professor_a1 = 'Prof. Jorge'
+    turma_a1 = 'Direito'
+    slot_a1 = 2
+    professor_a2 = 'Prof. Roberto'
+    turma_a2 = 'Téc. Enfermagem'
+    slot_a2 = 3
+    exibir = ''
 
-    visualizar += f'\n Slot({slot_a1}): \n\n {professor_a1} \n {turma_a1} \n {dias_slots(slot_a1)} \n\n Slot({slot_a2}): \n\n {professor_a2} \n {turma_a2} \n {dias_slots(slot_a2)}\n\n'
-    slots_cadastrados(visualizar)
+    exibir += f'\n Slot({slot_a1}): \n\n {professor_a1} \n {turma_a1} \n {dias_slots(slot_a1)} \n\n Slot({slot_a2}): \n\n {professor_a2} \n {turma_a2} \n {dias_slots(slot_a2)}\n\n'
+    slots_cadastrados(exibir)
 
 
-    professor_novo = str(input('Informe qual professor você deseja cadastrar: ').title())
+    professor_novo = str(input('Informe qual professor você deseja cadastrar: ').title().strip())
     
-    turma_novo = str(input('Disciplina que deseja alocar: ').title())
+    turma_novo = str(input('Disciplina que deseja alocar: ').title().strip())
     
-    exibir_slots_disponiveis()
     slot_novo = verificar_slots()
     
     
@@ -94,10 +94,9 @@ def cadastrar_aula():
     if choque:
         print('Choque de aulas! Informe os dados novamente...')
     print('Aulas cadastradas com sucesso!')
-    visualizar += f'Slot({slot_novo}): \n\n {professor_novo} \n {turma_novo} \n {dias_slots(slot_novo)}\n\n'
-    slots_cadastrados(visualizar)
-    
-cadastrar_aula()
+    exibir += f'Slot({slot_novo}): \n\n Prof. {professor_novo} \n {turma_novo} \n {dias_slots(slot_novo)}\n\n'
+    slots_cadastrados(exibir)
+
 
 
 
