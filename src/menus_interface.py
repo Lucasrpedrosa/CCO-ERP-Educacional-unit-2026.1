@@ -27,9 +27,9 @@ def verifica_notas(nome_avaliacao):
             valor = float(input(f"Digite a nota da {nome_avaliacao} (0 a 10): "))
             if valor >= 0 and valor <= 10:
                 return valor
-            print("@@@ A nota deve estar entre 0 e 10. @@@")
+            print("[ERRO] A nota deve estar entre 0 e 10")
         except ValueError:
-            print("@@@ Valor invalido! Digite um numero. @@@")
+            print("[ERRO] Valor invalido! Digite um numero")
 
 
 
