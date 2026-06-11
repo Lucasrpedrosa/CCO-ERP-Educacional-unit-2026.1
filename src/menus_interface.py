@@ -1,37 +1,3 @@
-
-def menu_principal():
-        print('=============================================================')
-        print('                     [ERP EDUCACIONAL]  ')
-        print('=============================================================')
-        print('[1] ALOCAÇÃO DE PROFESSOR/TURMAS')
-        print('[2] DIÁRIO DE CLASSE')
-        print('[0] Encerrar\n')
-        print('=============================================================')
-        
-        
-def menu_opcao():
-    while True:
-        try:
-            menu_principal()
-            menu = int(input('Escolha uma das opções: ').strip())
-            if menu < 0 or menu > 2:
-                 print('[ERRO] Informe um número entre as opção a seguir')
-                 continue
-            return menu
-        except ValueError:
-                print("[ERRO] Digite apenas números!")
-                continue
-def verifica_notas(nome_avaliacao):
-    while True:
-        try:
-            valor = float(input(f"Digite a nota da {nome_avaliacao} (0 a 10): "))
-            if valor >= 0 and valor <= 10:
-                return valor
-            print("@@@ A nota deve estar entre 0 e 10. @@@")
-        except ValueError:
-            print("@@@ Valor invalido! Digite um numero. @@@")
-
-
 class Menu:
 
     def exibir_principal(self):
@@ -45,19 +11,18 @@ class Menu:
         print("[5] Gerar Relatório")
         print("[0] Encerrar Programa")
         while True:
-            opicao = input("=> ").strip()
-            if opicao in ["0","1","2","3","4","5"]:
-                return opicao
+            opcao = input("=> ").strip()
+            if opcao in ["0","1","2","3","4","5"]:
+                return opcao
             print("[ERRO] Opção inválida!")
 
     def coletar_dados_professor(self):
         nome  = input("Nome do professor: ").strip()
-        cpf   = input("CPF: ").strip()
         while True:
             try:
                 carga = int(input("Carga horaria maxima (h): "))
                 if 1 <= carga <= 40:
-                    return nome, cpf, carga
+                    return nome, carga
                 print("[ERRO] Entre 1 e 40h")
             except ValueError:
                 print("[ERRO] Digite penas números!")
