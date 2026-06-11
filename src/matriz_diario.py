@@ -20,6 +20,9 @@ def determinar_status(media_parcial, nota_final=None):
         else:
             return "Prova Final", media_parcial
 
+def adicionar_aluno(alunos,  aluno):
+        alunos.append(aluno)
+
 
 def processar_diario(diario):
     resultados = []
@@ -80,12 +83,12 @@ def lancar_notas():
         if nome.lower() == 'sair':
             break
         try:
-            av1 = float(input(f"  AV1 de {nome}: ").strip())
-            av2 = float(input(f"  AV2 de {nome}: ").strip())
-            av3 = float(input(f"  AV3 de {nome}: ").strip())
+            av1 = float(input(f"  AV1 de {nome.title()}: ").strip())
+            av2 = float(input(f"  AV2 de {nome.title()}: ").strip())
+            av3 = float(input(f"  AV3 de {nome.title()}: ").strip())
             mp = calcular_media_parcial(av1, av2, av3)
             if 4.0 <= mp < 7.0:
-                resposta = input(f"  {nome} precisa de Prova Final (MP={mp:.1f}). Lançar nota? (s/n): ").strip().lower()
+                resposta = input(f"  {nome.title()} precisa de Prova Final (MP={mp:.1f}). Lançar nota? (s/n): ").strip().lower()
                 if resposta == 's':
                     pf = float(input("  Nota da Prova Final: ").strip())
                     diario.append([nome, av1, av2, av3, pf])
@@ -93,7 +96,8 @@ def lancar_notas():
                     diario.append([nome, av1, av2, av3])
             else:
                 diario.append([nome, av1, av2, av3])
-            print(f"  ✓ {nome} adicionado(a) ao diário!")
+            print(f"  ✓ {nome.title()} adicionado(a) ao diário!")
+            break
         except ValueError:
             print("  ✗ Erro: Digite apenas números para as notas.")
     return diario

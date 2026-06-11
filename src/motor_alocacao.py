@@ -20,10 +20,10 @@ class MotorAlocacao:
     def cadastrar_professor(self, professor: Professor) -> None:
         for prof in self.professores:
             if prof.nome == professor.nome:
-                print(f"[ERRO] Prof. {professor.nome} já está cadastrado.")
+                print(f"[ERRO] Prof. {professor.nome.title()} já está cadastrado.")
                 return
         self.professores.append(professor)
-        print(f"Prof. {professor.nome} cadastrado com sucesso!")
+        print(f"Prof. {professor.nome.title()} cadastrado com sucesso!")
 
     def cadastrar_turma(self, turma: Turma) -> None:
         for t in self.turmas:
@@ -49,8 +49,8 @@ class MotorAlocacao:
         
         for alocacao in self.alocacoes:
             if alocacao["professor"] == nome_prof and alocacao["slot"] == slot:
-                return True     # choque encontrado
-        return False            # nenhum conflito
+                return True     
+        return False            
 
     def choque_turma(self, cod_turma: str, slot: str) -> bool:
         
@@ -68,6 +68,7 @@ class MotorAlocacao:
         cod_turma:  str,
         disciplina: str,
         slot:       str,
+        horas:      str
     ) -> tuple[bool, str]:
         
         
@@ -83,14 +84,6 @@ class MotorAlocacao:
             return False, (
                 f"Professor '{nome_prof}' não encontrado. "
                 f"Cadastre-o antes de alocar."
-            )
-
-    
-        turma = self._buscar_turma(cod_turma)
-        if turma is None:
-            return False, (
-                f"Turma '{cod_turma}' não encontrada. "
-                f"Cadastre-a antes de alocar."
             )
 
         
@@ -123,11 +116,12 @@ class MotorAlocacao:
             "turma":      cod_turma,
             "disciplina": disciplina,
             "slot":       slot,
+            "horas":      horas,
         })
 
         return True, (
             f"Alocação realizada: Prof. {nome_prof} | "
-            f"Turma {cod_turma} | {disciplina} | {slot}"
+            f"Turma {cod_turma} | {disciplina} | {slot} | {horas}H"
         )
 
   

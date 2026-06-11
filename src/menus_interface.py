@@ -17,7 +17,7 @@ class Menu:
             print("[ERRO] Opção inválida!")
 
     def coletar_dados_professor(self):
-        nome  = input("Nome do professor: ").strip()
+        nome  = input("Nome do professor: ").strip().title()
         while True:
             try:
                 carga = int(input("Carga horaria maxima (h): "))
@@ -28,7 +28,7 @@ class Menu:
                 print("[ERRO] Digite penas números!")
 
     def coletar_dados_aluno(self):
-        nome      = input("Nome do aluno: ").strip()
+        nome = input("Nome do aluno: ").strip().title()
         matricula = input("Matricula: ").strip()
         return nome, matricula
 
@@ -44,7 +44,7 @@ class Menu:
 
     def fluxo_alocacao(self, motor):
         print("\n--- Alocar Aula ---")
-        nome_prof  = input("Nome do professor: ").strip()
+        nome_prof  = input("Nome do professor: ").strip().title()
         cod_turma  = input("Código da turma  : ").strip()
         cod_disc   = input("Código da disciplina: ").strip()
         slot       = input("Slot (ex: SEG_MANHA): ").strip().upper()
